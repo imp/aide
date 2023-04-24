@@ -20,3 +20,23 @@ pub struct Tag {
     #[serde(flatten, deserialize_with = "crate::util::deserialize_extensions")]
     pub extensions: IndexMap<String, serde_json::Value>,
 }
+
+impl Tag {
+    /// Creates new named `Tag`
+    pub fn new(name: impl Into<String>) -> Self {
+        let name = name.into();
+        Self {
+            name,
+            ..Self::default()
+        }
+    }
+
+    /// Sets a description for this `Tag`
+    pub fn description(self, description: impl Into<String>) -> Self {
+        let description = Some(description.into());
+        Self {
+            description,
+            ..self
+        }
+    }
+}
