@@ -50,11 +50,7 @@ fn api_docs(api: TransformOpenApi) -> TransformOpenApi {
     api.title("Aide axum Open API")
         .summary("An example Todo application")
         .description(include_str!("README.md"))
-        .tag(Tag {
-            name: "todo".into(),
-            description: Some("Todo Management".into()),
-            ..Default::default()
-        })
+        .tag(Tag::new("todo").description("Todo Management"))
         .security_scheme(
             "ApiKey",
             aide::openapi::SecurityScheme::ApiKey {
